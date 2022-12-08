@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quark
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quark
+  template:
+    metadata:
+      labels:
+        app: quark
+    spec:
+      containers:
+      - name: hello
+        image: westillusemaster/quark:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: quark-sv
+spec:
+  selector:
+    app: quark-sv
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
