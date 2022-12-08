@@ -1,5 +1,5 @@
 # apply kubernetes quark app
-# kubectl apply -f quark.yaml
+kubectl apply -f quark.yaml
 
 # create cert-manager
 kubectl create ns cert-manager
