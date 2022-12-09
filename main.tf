@@ -27,7 +27,9 @@ resource "google_container_cluster" "primary" {
   name     = "k8s-cluster"
   location = "europe-west9"
 
-  disk_size = 50
+  auto_provisioning_defaults = {
+    disk_size = 50
+  }
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
