@@ -26,11 +26,7 @@ resource "google_service_account" "default" {
 resource "google_container_cluster" "primary" {
   name     = "k8s-cluster"
   location = "europe-west9"
-
-  auto_provisioning_defaults = {
-    disk_size = 50
-  }
-
+  
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.
@@ -46,7 +42,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
 
   node_config {
     preemptible  = true
-    machine_type = "e2-medium"
+    machine_type = "e2-small"
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.default.email
