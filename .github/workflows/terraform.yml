@@ -49,6 +49,10 @@ on: [push]
 permissions:
   contents: read
 
+defaults:
+  run:
+    working-directory: terraform
+
 jobs:
   terraform:
     name: 'Terraform'
