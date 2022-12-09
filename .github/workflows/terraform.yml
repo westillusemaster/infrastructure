@@ -5,13 +5,9 @@ on: [push]
 permissions:
   contents: read
 
-defaults:
-  run:
-    working-directory: terraform
-
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform'      
     runs-on: ubuntu-latest
     environment: production
 
@@ -19,6 +15,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: terraform
 
     steps:
     # Checkout the repository to the GitHub Actions runner
