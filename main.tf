@@ -32,6 +32,11 @@ resource "google_container_cluster" "primary" {
   # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
+
+  node_config {
+    disk_size_gb = 50
+  }
+
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
