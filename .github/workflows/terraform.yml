@@ -36,7 +36,7 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
 
     - name: 'Setup google auth in multidirectory repo'
-      run: 'mv "$GITHUB_WORKSPACE/gha-creds-*.json" "$GITHUB_WORKSPACE/terraform/"'
+      run: mv $GITHUB_WORKSPACE/gha-creds-*.json $GITHUB_WORKSPACE/terraform/
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
