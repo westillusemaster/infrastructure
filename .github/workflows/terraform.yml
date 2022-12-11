@@ -1,6 +1,10 @@
 name: 'Terraform'
 
-on: [push]
+on:
+  push:
+    paths:
+    - 'terraform/**'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -35,12 +39,11 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
+    # Updates GOOGLE_APPLICATION_CREDENTIALS env variable and move auth file to subdirectory
     - name: 'Setup google auth in multidirectory repo'
-      run: |
-        
+      run: |  
         echo "GOOGLE_APPLICATION_CREDENTIALS=$GITHUB_WORKSPACE/terraform/`ls -1 $GOOGLE_APPLICATION_CREDENTIALS | xargs basename`" >> $GITHUB_ENV
         mv $GITHUB_WORKSPACE/gha-creds-*.json $GITHUB_WORKSPACE/terraform/
-        echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
