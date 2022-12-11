@@ -38,7 +38,7 @@ jobs:
     - name: 'Setup google auth in multidirectory repo'
       run: |
         
-        echo "GOOGLE_APPLICATION_CREDENTIALS=$(echo $GITHUB_WORKSPACE`ls -1 | grep gha-creeds | grep json`)" >> $GITHUB_ENV
+        echo "${GITHUB_WORKSPACE}terraform/`ls -1 $GOOGLE_APPLICATION_CREDENTIALS | xargs basename`" >> $GITHUB_ENV
         mv $GITHUB_WORKSPACE/gha-creds-*.json $GITHUB_WORKSPACE/terraform/
         echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
 
