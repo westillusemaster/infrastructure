@@ -16,3 +16,9 @@ kubectl apply -f ingress-nginx.yaml
 
 # show certificates
 kubectl get certificates
+
+# apply grafana (port 3000:3000) (user admin:admin)
+kubectl apply -f grafana.yaml
+
+# check grafana
+kubectl port-forward service/grafana 3000:3000
